@@ -37,7 +37,7 @@ public class CandidateController : ControllerBase
 		await _mediator.Send(new DeleteRequest(candidateId));
 		return Ok();
 	}
-	[HttpGet]
+	[HttpGet("all")]
 	public async Task<IActionResult> GetAll()
 	{
 		return Ok(await _mediator.Send(new GetListOfCandidatesRequest()));

@@ -15,6 +15,10 @@ public class CandidateService : ICandidateService
 
 	public async Task<Candidate> CreateAsync(CandidateDto candidateDto)
 	{
+		var id = await _repository.IsExist(candidateDto.Email);
+		if (id != null)
+			return await UpdateAsync(id, candidateDto);
+
 		var candidate = new Candidate()
 		{
 			Id = Guid.NewGuid(),
@@ -46,7 +50,7 @@ public class CandidateService : ICandidateService
 		return await _repository.GetCandidatesAsync(cancellationToken);
 	}
 
-	public Task<Candidate> UpdateAsync(Guid candidateId, CandidateDto candidateDto)
+	public Task<Candidate> UpdateAsync(Guid? candidateId, CandidateDto candidateDto)
 	{
 		return _repository.UpdateAsync(candidateId, candidateDto);
 	}

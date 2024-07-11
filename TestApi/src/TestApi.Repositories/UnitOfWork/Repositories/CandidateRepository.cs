@@ -42,7 +42,7 @@ public class CandidateRepository : ICandidateRepository
 		return candidates;
 	}
 
-	public async Task<Candidate> UpdateAsync(Guid candidateId, CandidateDto candidateDto)
+	public async Task<Candidate> UpdateAsync(Guid? candidateId, CandidateDto candidateDto)
 	{
 		var candidate = await _context.Candidates.FirstOrDefaultAsync(x => x.Id == candidateId) ??
 			throw new NullReferenceException(nameof(Candidate));
@@ -57,5 +57,13 @@ public class CandidateRepository : ICandidateRepository
 		_context.Candidates.Update(candidate);
 		await _context.SaveChangesAsync();
 		return candidate;
+	}
+	public async Task<Guid?> IsExist(string email)
+	{
+		var candidate = await _context.Candidates.FirstOrDefaultAsync(x => x.Email == email);
+		if(candidate != null)
+			return candidate.Id;
+
+		return null;
 	}
 }

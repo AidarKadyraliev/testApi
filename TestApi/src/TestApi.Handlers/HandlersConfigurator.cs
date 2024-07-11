@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace TestApi.Handlers;
@@ -15,6 +14,6 @@ public static class HandlersConfigurator
     /// <param name="services">Service collection</param>
     public static void ConfigureRequestHandlers(this IServiceCollection services)
     {
-        services.AddMediatR(Assembly.GetExecutingAssembly());
+		services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(HandlersConfigurator)));
     }
 }

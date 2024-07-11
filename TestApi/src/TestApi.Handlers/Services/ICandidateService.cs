@@ -29,7 +29,7 @@ public interface ICandidateService
 	/// </summary>
 	/// <param name="candidateDto"></param>
 	/// <returns></returns>
-	Task<Candidate> UpdateAsync(Guid candidateId, CandidateDto candidateDto);
+	Task<Candidate> UpdateAsync(Guid? candidateId, CandidateDto candidateDto);
 
 	/// <summary>
 	///		Delete candidate

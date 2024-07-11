@@ -29,7 +29,7 @@ public interface ICandidateRepository
 	/// </summary>
 	/// <param name="candidateDto"></param>
 	/// <returns></returns>
-	Task<Candidate> UpdateAsync(Guid candidateId,CandidateDto candidateDto);
+	Task<Candidate> UpdateAsync(Guid? candidateId,CandidateDto candidateDto);
 
 	/// <summary>
 	///		Delete candidate
@@ -37,4 +37,11 @@ public interface ICandidateRepository
 	/// <param name="candidateId"></param>
 	/// <returns></returns>
 	Task<int> DeleteAsync(Guid candidateId);
+
+	/// <summary>
+	///		Check if candidate exist
+	/// </summary>
+	/// <param name="email"></param>
+	/// <returns></returns>
+	Task<Guid?> IsExist(string email);
 }
