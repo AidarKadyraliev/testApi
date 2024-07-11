@@ -1,4 +1,7 @@
 using TestApi.Handlers;
+using TestApi.Handlers.Services;
+using TestApi.Repositories.UnitOfWork;
+using TestApi.Repositories.UnitOfWork.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,9 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     builder.Services.ConfigureRequestHandlers();
+    builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+    builder.Services.AddScoped<ICandidateService, CandidateService>();
+    builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 
     var app = builder.Build();
 

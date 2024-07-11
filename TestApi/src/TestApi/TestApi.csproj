@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\TestApi.DataContracts\TestApi.DataContracts.csproj" />
       <ProjectReference Include="..\TestApi.Handlers\TestApi.Handlers.csproj" />
     </ItemGroup>
 
